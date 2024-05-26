@@ -13,12 +13,11 @@ function setup() {
     video.hide();
 
     video.elt.addEventListener('loadeddata', () => {
-        console.log('Video is loaded and playing');
+        // console.log('Video is loaded and playing');
     });
 
-    // Set the detection confidence here
-    handpose = ml5.handpose(video, { detectionConfidence: 0.8 }, () => {
-        console.log('Model Loaded');
+    handpose = ml5.handpose(video, { detectionConfidence: 0.8 }, () => { //nauwkeurigheid bepalen
+        // console.log('Model Loaded');
         modelReadyFlag = true;
     })
 
@@ -28,7 +27,7 @@ function setup() {
 
     let startButton = select('#startButton');
     startButton.mousePressed(startGame);
-    console.log('Setup complete');
+    // console.log('Setup complete');
 }
 
 function startGame() {
@@ -73,7 +72,7 @@ function drawKeypoints() {
 
     for (let i = 0; i < predictions.length; i++) {
         let prediction = predictions[i];
-        let indexFinger = prediction.landmarks[8]; // Index vinger punt
+        let indexFinger = prediction.landmarks[8]; // wijs vinger punt
 
         fill(255, 0, 0);
         noStroke();
@@ -119,7 +118,7 @@ class Ball {
                 this.xSpeed *= -1.1;
                 this.ySpeed *= -1.1;
                 score++;
-                console.log('Collision detected! Score:', score);
+                // console.log('Collision detected! Score:', score);
             }
         }
     }
