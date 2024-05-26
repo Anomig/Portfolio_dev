@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Location-based Game in Mechelen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh;
+        }
+        .popup-content {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script>
+        // Initialiseer de kaart
+        var map = L.map('map').setView([51.0256, 4.4777], 13);
+
+        // Voeg een tile layer toe
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Voorbeeld locaties in Mechelen met vragen/challenges
+        var locations = [
+            { lat: 51.0284, lng: 4.4804, question: "Wat is de naam van de bekende kerk in het centrum van Mechelen?" }, // Sint-Romboutskathedraal
+            { lat: 51.0270, lng: 4.4828, question: "Hoe heet het grote plein in het hart van Mechelen?" }, // Grote Markt
+            { lat: 51.0255, lng: 4.4813, question: "Wat is de naam van het historische paleis aan de Korenmarkt?" }, // Hof van Busleyden
+            { lat: 51.0194, lng: 4.4862, question: "Hoe heet het grote park ten zuiden van het centrum?" }, // Vrijbroekpark
+            { lat: 51.0295, lng: 4.4773, question: "Wat is de naam van de bekende brouwerij in Mechelen?" } // Brouwerij Het Anker
+        ];
+
+        // Voeg markers toe voor elke locatie
+        locations.forEach(function(location) {
+            L.marker([location.lat, location.lng]).addTo(map)
+                .bindPopup(location.question);
+        });
+
+        // Gebruik Geolocation API om de huidige locatie van de gebruiker te verkrijgen
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(function(position) {
+                var userLat = position.coords.latitude;
+                var userLng = position.coords.longitude;
+
+                // Verplaats de kaart naar de huidige locatie van de gebruiker
+                map.setView([userLat, userLng], 13);
+
+                // Voeg een marker toe voor de huidige locatie van de gebruiker
+                var userMarker = L.marker([userLat, userLng]).addTo(map)
+                    .bindPopup("Je bent hier!").openPopup();
+
+                // Controleer of de gebruiker dicht bij een locatie is
+                locations.forEach(function(location) {
+                    var distance = getDistance(userLat, userLng, location.lat, location.lng);
+                    if (distance < 50) { // Als de gebruiker binnen 50 meter is
+                        alert("Je bent dicht bij een locatie! " + location.question);
+                    }
+                });
+            });
+        } else {
+            alert("Geolocation is niet ondersteund door deze browser.");
+        }
+
+        // Haversine formule om de afstand tussen twee punten te berekenen
+        function getDistance(lat1, lng1, lat2, lng2) {
+            var R = 6371e3; // Aardstraal in meters
+            var φ1 = lat1 * Math.PI/180;
+            var φ2 = lat2 * Math.PI/180;
+            var Δφ = (lat2-lat1) * Math.PI/180;
+            var Δλ = (lng2-lng1) * Math.PI/180;
+
+            var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                    Math.cos(φ1) * Math.cos(φ2) *
+                    Math.sin(Δλ/2) * Math.sin(Δλ/2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+            var d = R * c;
+            return d; // Afstand in meters
+        }
+    </script>
+</body>
+</html>
