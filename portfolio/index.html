@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anomi Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Portfolio of <span>Anomi</span></h1>
+        <nav>
+            <ul>
+                <li><a href="#design">Design Projects</a></li>
+                <li><a href="#development">Development Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="design">
+        <h2>Design Projects</h2>
+        <div class="project">
+            <img src="images/design1.jpg" alt="Design Project 1">
+            <div class="project-details">
+                <h3>Design Project 1</h3>
+                <p>Beschrijving van het design project.</p>
+            </div>
+        </div>
+        <!-- Voeg meer design projecten toe hier -->
+    </section>
+
+    <section id="projects">
+        <h2>Coding away</h2>
+        <div class="project-list">
+            <div class="project-item">
+                <h3>City Game</h3>
+                <p>A game using geolocation API and Leaflet.</p>
+                <a href="projects/City_game/index.html">Take a look at: City Game</a>
+            </div>
+            <div class="project-item">
+                <h3>Devive Orientation</h3>
+                <p>A mini-game using device orientation and motion.</p>
+                <a href="projects/Device_Orientation/index.html">Take a look at: Device Orientation</a>
+            </div>
+            <div class="project-item">
+                <h3>Photo Recognition</h3>
+                <p>A mini app where you can take a photo and recognize it with mobileNet.</p>
+                <a href="projects/Foto_recognition/index.html">Take a look at: Photo Recognition</a>
+            </div>
+            <div class="project-item">
+                <h3>Speech Quiz</h3>
+                <p>A mini-quiz with speech synthesis and speech recognition.</p>
+                <a href="projects/Speech_Quiz/index.html">Take a look at: Speech Quiz</a>
+            </div>
+            <div class="project-item">
+                <h3>Track your body</h3>
+                <p>A mini-game using poseNet and p5js.</p>
+                <a href="projects/Track_Your_Body/index.html">Take a look at: Track your body</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <form action="mailto:jouremail@example.com" method="post" enctype="text/plain">
+            <label for="name">Naam:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Anomi. Alle rechten voorbehouden.</p>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>
