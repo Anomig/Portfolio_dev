@@ -5,7 +5,7 @@ const questions = [
     },
     {
         question: "What is 2 + 2?",
-        answer: "4"
+        answer: "four"
     },
     {
         question: "What is the color of the sky on a clear day?",
@@ -32,10 +32,12 @@ function listen() {
 
         recognition.onresult = (event) => {
             const transcript = event.results[0][0].transcript;
+            console.log('Transcript:', transcript);
             resolve(transcript);
         };
 
         recognition.onerror = (event) => {
+            console.error('Recognition error:', event.error);
             reject(event.error);
         };
     });
