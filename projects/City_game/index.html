@@ -3,18 +3,35 @@
 <head>
     <title>Location-based Game in Mechelen</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         #map {
-            height: 100vh;
-        }
-        .popup-content {
-            font-size: 16px;
+            height: 70vh; /* Zorg ervoor dat de kaart niet de volledige pagina in beslag neemt */
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <div id="map"></div>
+
+    <header>
+        <h1>Portfolio of <span>Anomi</span></h1>
+        <nav>
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../index.html#development">Development Projects</a></li>
+            </ul>
+        </nav>
+    </header>
+
+     <section>
+        <h2>City Game</h2>
+        <div id="map"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Anomi. Alle rechten voorbehouden.</p>
+    </footer>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
